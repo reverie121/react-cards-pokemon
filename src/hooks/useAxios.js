@@ -1,11 +1,11 @@
 import { useState } from "react";
 import axios from "axios";
-import uuid from "uuid";
+import { v4 as uuid } from "uuid";
 
-const useAxios = (url) => {
+const useAxios = (baseUrl) => {
     const [cards, setCards] = useState([]);
-
-    const addCard = async () => {
+    const addCard = async (urlExtension="") => {
+        const url = baseUrl + urlExtension;
         const card = await axios.get(
                 `${url}`
             );
